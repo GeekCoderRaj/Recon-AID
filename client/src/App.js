@@ -1,20 +1,23 @@
-import React, {useEffect, useState} from "react"
+import React from 'react'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
 
-function App()
-{
-
-  const [backenddata, setbackenddata] = useState([{}])
-  useEffect(() => {
-    fetch("/api").then(response => response.json()).then(data => setbackenddata(data))
-  }, [])
-
-  return (
-    <div>
-      {
-        (typeof backenddata.users === 'undefined') ? (<p>Loading...</p>) : (backenddata.users.map((user, i) => (<p key={i}>{user}</p>)))
-      }
-    </div>
-  )
+const App = () => {
+    return (
+        <div>
+            <BrowserRouter>
+                <Routes>
+                    {/* <Route path='/login' exact component={Login} /> */}
+                    {/* <Route path='/register' exact component={Register} /> */}
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                </Routes>
+            </BrowserRouter>
+        </div>
+    )
 }
 
 export default App
