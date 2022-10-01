@@ -21,12 +21,13 @@ app.post('/api/register', async (req, res) => {
 			email: req.body.email,
 			password: req.body.password,
 		})
-		console.log("user registered!")
-		res.json({ status: "ok" })
-	} catch {
+		console.log("user registered!");
+		res.json({ status: "ok" , user, token})
+	} catch (error){
 		console.log("user already exists!")
-		res.json({ status: "error", error: "Duplicate email" })
+		res.json({ status: "error", error})
 	}
+	// const token  = jwt.sign(user, "akhil", {expiresIn: "600"})  
 })
 
 app.post('/api/login', async (req, res) => {
